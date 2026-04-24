@@ -1,102 +1,195 @@
-  <!DOCTYPE html>
-  <html lang="id">
-  <head>
-    <link rel="icon" type="image/png" href="breka_logo_512-removebg-preview.png">
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Breka Coffee</title>
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Talk with Breka</title>
 
-    <!-- ✅ FONT -->
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/bomber-balloon" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    <!-- ✅ STYLESHEET -->
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
+<script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- 🔄 LOADING SCREEN -->
-    <div id="loading-screen">
-      <div class="logo-container">
-        <img class="breka-logo" src="breka_logo_512-removebg-preview.png" alt="BREKA Logo">
-      </div>
-    </div>
+<style>
+body { font-family: 'Inter', sans-serif; }
 
-    <!-- 🧾 KONTEN UTAMA -->
-      <section class="hero">
-        <div class="logo-title">
-          <img class="logo" src="breka_logo_512-removebg-preview.png" alt="Logo">
-        </div>
-        <h1>BREKA COFFEE</h1>
-        <p>Rasa kopi bisa hilang dalam satu tegukan. Tapi rasa dimengerti Breka?<br>Bisa tinggal SELAMANYA!!</p>
-        <a href="https://brekacoffee.github.io/" target="_blank" class="cta-button">Menu</a>
-      </section>
+/* smooth fade */
+.fade-in { animation: fade 1s ease forwards; opacity: 0; }
+@keyframes fade {
+  to { opacity: 1; }
+}
 
-     <section id="pilar" class="pilar-section">
-  <div class="container">
-    <header class="pilar-header">
-      <h2>Pesan Breka Buat Kamu</h2>
-      <p>Apapun keadaanmu, Breka punya pesan yang baik sebagai pengingat buat kamu hari ini.</p>
-    </header>
+/* glass */
+.glass {
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+}
 
-    <div class="pilar-grid">
-      <!-- Card 1: Cinta -->
-      <a class="pilar-card" href="https://brekacoffee.github.io/CINTA/" aria-label="Tentang Cinta">
-        <div class="icon-wrap">
-          <!-- heart outline -->
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M12.1 20s-7.8-4.6-9.4-7.6C-0.3 8 .9 4.7 4.2 4.7c2.4 0 3.4 1.5 3.8 2 .4-.5 1.4-2 3.8-2 3.3 0 4.5 3.3 1.5 7.7-1.6 3-9.3 7.6-9.3 7.6z"/></svg>
-        </div>
-        <h3>ASMARA</h3>
-        <p class="desc">Cerita manis dan pahit perjalanan hati.</p>
-      </a>
+/* typing */
+.typing::after {
+  content: '|';
+  animation: blink 1s infinite;
+}
+@keyframes blink {
+  0%,100%{opacity:1}
+  50%{opacity:0}
+}
+</style>
+</head>
 
-      <!-- Card 2: Keluarga -->
-      <a class="pilar-card" href="https://brekacoffee.github.io/KELUARGA/" aria-label="Keluarga">
-        <div class="icon-wrap">
-          <!-- family outline -->
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M5 20v-3a3 3 0 0 1 3-3h0a3 3 0 0 1 3 3v3M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM18 20v-3a3 3 0 0 0-3-3h0a3 3 0 0 0-3 3v3"/></svg>
-        </div>
-        <h3>KELUARGA</h3>
-        <p class="desc">Hangatnya kebersamaan yang menemani hari.</p>
-      </a>
+<body class="bg-black text-white overflow-x-hidden">
 
-      <!-- Card 3: Pekerjaan -->
-      <a class="pilar-card" href="https://brekacoffee.github.io/KARIR/" aria-label="Pekerjaan">
-        <div class="icon-wrap">
-          <!-- briefcase -->
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <h3>PEKERJAAN</h3>
-        <p class="desc">Produktif tanpa kehilangan rasa.</p>
-      </a>
+<!-- LOADER -->
+<div id="loader" class="fixed inset-0 flex items-center justify-center bg-black z-50">
+  <h1 class="text-2xl tracking-widest">BREKA...</h1>
+</div>
 
-      <!-- Card 4: Kehidupan -->
-      <a class="pilar-card" href="https://brekacoffee.github.io/MASA-DEPAN/" aria-label="Kehidupan">
-        <div class="icon-wrap">
-          <!-- leaf -->
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M21 3s-6 1-10 5-6 10-6 10 6-1 10-5 6-10 6-10zM7 17s2-2 5-3"/></svg>
-        </div>
-        <h3>MASA DEPAN</h3>
-        <p class="desc">Makna kecil yang bikin hari berarti.</p>
-      </a>
+<!-- HERO -->
+<section class="min-h-screen flex flex-col items-center justify-center text-center px-6 relative">
+  <div class="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black"></div>
+
+  <div class="relative z-10 max-w-2xl fade-in">
+    <img src="breka_logo_512-removebg-preview.png" class="w-24 mx-auto mb-6">
+
+    <h1 class="text-4xl md:text-6xl font-bold mb-4">
+      Talk with Breka
+    </h1>
+
+    <p id="typingText" class="text-lg text-gray-300 typing h-10"></p>
+
+    <div class="mt-8 flex gap-4 justify-center">
+      <button onclick="startChat()" class="px-6 py-3 bg-white text-black rounded-full hover:scale-105 transition">Mulai Cerita</button>
+      <a href="#pilar" class="px-6 py-3 border border-white rounded-full hover:bg-white hover:text-black transition">Eksplor</a>
     </div>
   </div>
 </section>
 
-<footer>
-    <small>© 2025 Breka Coffee. Recharge your day with <a href="https://instagram.com/brekacoffee.id" style="color:#fff;text-decoration:underline">@brekacoffee.id</a></small>
-  </footer>
+<!-- CHAT SECTION -->
+<section id="chat" class="hidden min-h-screen px-4 py-20">
+  <div class="max-w-2xl mx-auto glass rounded-2xl p-6">
 
-        </div>
-      </section> 
+    <div id="chatBox" class="space-y-4 h-96 overflow-y-auto mb-4"></div>
 
-    <!-- ✅ SCRIPT -->
-    <script src="script.js"></script>
-  </body>
-  </html>
+    <div class="flex gap-2">
+      <input id="userInput" type="text" placeholder="Ceritakan apa yang kamu rasakan..." class="flex-1 p-3 rounded-xl bg-black border border-white/20">
+      <button onclick="sendMessage()" class="px-5 bg-white text-black rounded-xl">Kirim</button>
+    </div>
 
+  </div>
+</section>
 
+<!-- PILAR -->
+<section id="pilar" class="py-20 px-6">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-3xl font-bold mb-10 text-center">Pesan Breka</h2>
 
+    <div class="grid md:grid-cols-4 gap-6">
 
+<a href="https://brekacoffee.github.io/CINTA/">
+  <div class="glass p-6 rounded-2xl hover:scale-105 transition cursor-pointer">
+    <h3 class="font-bold mb-2">ASMARA</h3>
+    <p class="text-sm text-gray-400">Tentang hati dan rasa</p>
+  </div>
+</a>
 
+  <a href="https://brekacoffee.github.io/KELUARGA/">
+      <div class="glass p-6 rounded-2xl hover:scale-105 transition">
+        <h3 class="font-bold mb-2">KELUARGA</h3>
+        <p class="text-sm text-gray-400">Tempat pulang</p>
+      </div>
+  </a>
 
+    <a href="https://brekacoffee.github.io/KARIR/">
+      <div class="glass p-6 rounded-2xl hover:scale-105 transition">
+        <h3 class="font-bold mb-2">KARIR</h3>
+        <p class="text-sm text-gray-400">Langkah masa depan</p>
+      </div>
+    </a>
+
+      <a href="https://brekacoffee.github.io/MASA-DEPAN/">
+      <div class="glass p-6 rounded-2xl hover:scale-105 transition">
+        <h3 class="font-bold mb-2">MASA DEPAN</h3>
+        <p class="text-sm text-gray-400">Hidup & perjalanan</p>
+      </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="text-center py-10 text-gray-500 text-sm">
+  © Breka Coffee — Recharge Your Day
+</footer>
+
+<script>
+
+// loader
+setTimeout(()=>{
+  document.getElementById('loader').style.display='none'
+},1200)
+
+// typing effect
+const text = "Kadang kamu cuma butuh didengar, bukan disuruh kuat terus.";
+let i = 0;
+function type(){
+  if(i < text.length){
+    document.getElementById('typingText').innerHTML += text.charAt(i);
+    i++;
+    setTimeout(type,40);
+  }
+}
+type();
+
+// start chat
+function startChat(){
+  document.getElementById('chat').classList.remove('hidden');
+  document.getElementById('chat').scrollIntoView({behavior:'smooth'});
+}
+
+// responses
+function generateResponse(input){
+  input = input.toLowerCase();
+
+  if(input.includes('capek')){
+    return "Capek itu valid. Kamu ga harus selalu kuat.";
+  }
+  if(input.includes('sedih')){
+    return "Sedih itu tanda kamu peduli.";
+  }
+  if(input.includes('sendiri')){
+    return "Kamu ga sendiri, meskipun rasanya begitu.";
+  }
+
+  return "Aku denger kok. Ceritain lagi ya.";
+}
+
+// send message
+function sendMessage(){
+  const input = document.getElementById('userInput');
+  const chatBox = document.getElementById('chatBox');
+
+  if(input.value.trim()==='') return;
+
+  const userMsg = document.createElement('div');
+  userMsg.className = 'text-right';
+  userMsg.innerHTML = `<span class="inline-block bg-white text-black px-4 py-2 rounded-xl">${input.value}</span>`;
+
+  chatBox.appendChild(userMsg);
+
+  const response = generateResponse(input.value);
+
+  setTimeout(()=>{
+    const botMsg = document.createElement('div');
+    botMsg.innerHTML = `<span class="inline-block bg-gray-800 px-4 py-2 rounded-xl">${response}</span>`;
+    chatBox.appendChild(botMsg);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  },600);
+
+  input.value='';
+}
+
+</script>
+
+</body>
+</html>
