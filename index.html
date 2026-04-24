@@ -5,24 +5,37 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Talk with Breka</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <script src="https://cdn.tailwindcss.com"></script>
 
-<style>
-body { font-family: 'Inter', sans-serif; }
-
-/* smooth fade */
-.fade-in { animation: fade 1s ease forwards; opacity: 0; }
-@keyframes fade {
-  to { opacity: 1; }
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        primary: "#55abe5",
+      }
+    }
+  }
 }
+</script>
+
+<style>
+body { font-family: 'Poppins', sans-serif; }
+
+/* fade */
+.fade-in { animation: fade 1s ease forwards; opacity: 0; }
+@keyframes fade { to { opacity: 1; } }
 
 /* glass */
 .glass {
-  backdrop-filter: blur(12px);
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.7);
+}
+.dark .glass {
+  background: rgba(0,0,0,0.5);
 }
 
 /* typing */
@@ -34,45 +47,73 @@ body { font-family: 'Inter', sans-serif; }
   0%,100%{opacity:1}
   50%{opacity:0}
 }
+
+/* HERO SYSTEM */
+.hero {
+  background: #55abe5;
+}
+.dark .hero {
+  background: radial-gradient(circle at top, #1e3a5f, #000);
+}
 </style>
 </head>
 
-<body class="bg-black text-white overflow-x-hidden">
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-white overflow-x-hidden">
+
+<!-- DARK MODE -->
+<button onclick="toggleDark()" class="fixed top-5 right-5 z-50 glass px-4 py-2 rounded-full">
+  🌙
+</button>
 
 <!-- LOADER -->
-<div id="loader" class="fixed inset-0 flex items-center justify-center bg-black z-50">
+<div id="loader" class="fixed inset-0 flex items-center justify-center bg-white dark:bg-gray-900 z-50">
   <h1 class="text-2xl tracking-widest">BREKA...</h1>
 </div>
 
 <!-- HERO -->
-<section class="min-h-screen flex flex-col items-center justify-center text-center px-6 relative">
-  <div class="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black"></div>
+<section class="hero min-h-screen flex flex-col items-center justify-center text-center px-6 relative text-white">
 
   <div class="relative z-10 max-w-2xl fade-in">
-    <img src="breka_logo_512-removebg-preview.png" class="w-24 mx-auto mb-6">
+
+    <!-- LOGO BULAT -->
+    <div class="w-28 h-28 mx-auto mb-6 flex items-center justify-center rounded-full bg-white shadow-2xl border-4 border-white/30">
+      <img src="breka_logo_512-removebg-preview.png" class="w-16">
+    </div>
 
     <h1 class="text-4xl md:text-6xl font-bold mb-4">
       Talk with Breka
     </h1>
 
-    <p id="typingText" class="text-lg text-gray-300 typing h-10"></p>
+    <p id="typingText" class="text-lg text-white/80 typing h-10"></p>
 
     <div class="mt-8 flex gap-4 justify-center">
-      <button onclick="startChat()" class="px-6 py-3 bg-white text-black rounded-full hover:scale-105 transition">Mulai Cerita</button>
-      <a href="#pilar" class="px-6 py-3 border border-white rounded-full hover:bg-white hover:text-black transition">Eksplor</a>
+      <button onclick="startChat()" 
+        class="px-6 py-3 bg-white text-primary rounded-full hover:scale-105 transition">
+        Mulai Cerita
+      </button>
+
+      <a href="#pilar" 
+        class="px-6 py-3 border border-white rounded-full hover:bg-white hover:text-primary transition">
+        Eksplor
+      </a>
     </div>
   </div>
 </section>
 
-<!-- CHAT SECTION -->
+<!-- CHAT -->
 <section id="chat" class="hidden min-h-screen px-4 py-20">
   <div class="max-w-2xl mx-auto glass rounded-2xl p-6">
 
     <div id="chatBox" class="space-y-4 h-96 overflow-y-auto mb-4"></div>
 
     <div class="flex gap-2">
-      <input id="userInput" type="text" placeholder="Ceritakan apa yang kamu rasakan..." class="flex-1 p-3 rounded-xl bg-black border border-white/20">
-      <button onclick="sendMessage()" class="px-5 bg-white text-black rounded-xl">Kirim</button>
+      <input id="userInput" type="text"
+        placeholder="Ceritakan apa yang kamu rasakan..."
+        class="flex-1 p-3 rounded-xl bg-white dark:bg-gray-900 border border-gray-300 dark:border-white/20">
+      
+      <button onclick="sendMessage()" class="px-5 bg-primary text-white rounded-xl">
+        Kirim
+      </button>
     </div>
 
   </div>
@@ -86,50 +127,55 @@ body { font-family: 'Inter', sans-serif; }
     <div class="grid md:grid-cols-4 gap-6">
 
 <a href="https://brekacoffee.github.io/CINTA/">
-  <div class="glass p-6 rounded-2xl hover:scale-105 transition cursor-pointer">
+  <div class="glass p-6 rounded-2xl hover:scale-105 transition">
     <h3 class="font-bold mb-2">ASMARA</h3>
-    <p class="text-sm text-gray-400">Tentang hati dan rasa</p>
+    <p class="text-sm text-gray-600 dark:text-gray-400">Tentang hati dan rasa</p>
   </div>
 </a>
 
-  <a href="https://brekacoffee.github.io/KELUARGA/">
-      <div class="glass p-6 rounded-2xl hover:scale-105 transition">
-        <h3 class="font-bold mb-2">KELUARGA</h3>
-        <p class="text-sm text-gray-400">Tempat pulang</p>
-      </div>
-  </a>
+<a href="https://brekacoffee.github.io/KELUARGA/">
+  <div class="glass p-6 rounded-2xl hover:scale-105 transition">
+    <h3 class="font-bold mb-2">KELUARGA</h3>
+    <p class="text-sm text-gray-600 dark:text-gray-400">Tempat pulang</p>
+  </div>
+</a>
 
-    <a href="https://brekacoffee.github.io/KARIR/">
-      <div class="glass p-6 rounded-2xl hover:scale-105 transition">
-        <h3 class="font-bold mb-2">KARIR</h3>
-        <p class="text-sm text-gray-400">Langkah masa depan</p>
-      </div>
-    </a>
+<a href="https://brekacoffee.github.io/KARIR/">
+  <div class="glass p-6 rounded-2xl hover:scale-105 transition">
+    <h3 class="font-bold mb-2">KARIR</h3>
+    <p class="text-sm text-gray-600 dark:text-gray-400">Langkah masa depan</p>
+  </div>
+</a>
 
-      <a href="https://brekacoffee.github.io/MASA-DEPAN/">
-      <div class="glass p-6 rounded-2xl hover:scale-105 transition">
-        <h3 class="font-bold mb-2">MASA DEPAN</h3>
-        <p class="text-sm text-gray-400">Hidup & perjalanan</p>
-      </div>
-      </a>
+<a href="https://brekacoffee.github.io/MASA-DEPAN/">
+  <div class="glass p-6 rounded-2xl hover:scale-105 transition">
+    <h3 class="font-bold mb-2">MASA DEPAN</h3>
+    <p class="text-sm text-gray-600 dark:text-gray-400">Hidup & perjalanan</p>
+  </div>
+</a>
 
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer class="text-center py-10 text-gray-500 text-sm">
+<footer class="bg-gray-900 text-white text-center py-10 text-sm">
   © Breka Coffee — Recharge Your Day
 </footer>
 
 <script>
+
+// DARK MODE
+function toggleDark(){
+  document.documentElement.classList.toggle('dark')
+}
 
 // loader
 setTimeout(()=>{
   document.getElementById('loader').style.display='none'
 },1200)
 
-// typing effect
+// typing
 const text = "Kadang kamu cuma butuh didengar, bukan disuruh kuat terus.";
 let i = 0;
 function type(){
@@ -147,24 +193,18 @@ function startChat(){
   document.getElementById('chat').scrollIntoView({behavior:'smooth'});
 }
 
-// responses
+// AI response
 function generateResponse(input){
   input = input.toLowerCase();
 
-  if(input.includes('capek')){
-    return "Capek itu valid. Kamu ga harus selalu kuat.";
-  }
-  if(input.includes('sedih')){
-    return "Sedih itu tanda kamu peduli.";
-  }
-  if(input.includes('sendiri')){
-    return "Kamu ga sendiri, meskipun rasanya begitu.";
-  }
+  if(input.includes('capek')) return "Capek itu valid. Kamu ga harus selalu kuat.";
+  if(input.includes('sedih')) return "Sedih itu tanda kamu peduli.";
+  if(input.includes('sendiri')) return "Kamu ga sendiri, meskipun rasanya begitu.";
 
   return "Aku denger kok. Ceritain lagi ya.";
 }
 
-// send message
+// send
 function sendMessage(){
   const input = document.getElementById('userInput');
   const chatBox = document.getElementById('chatBox');
@@ -173,15 +213,14 @@ function sendMessage(){
 
   const userMsg = document.createElement('div');
   userMsg.className = 'text-right';
-  userMsg.innerHTML = `<span class="inline-block bg-white text-black px-4 py-2 rounded-xl">${input.value}</span>`;
-
+  userMsg.innerHTML = `<span class="inline-block bg-primary text-white px-4 py-2 rounded-xl">${input.value}</span>`;
   chatBox.appendChild(userMsg);
 
   const response = generateResponse(input.value);
 
   setTimeout(()=>{
     const botMsg = document.createElement('div');
-    botMsg.innerHTML = `<span class="inline-block bg-gray-800 px-4 py-2 rounded-xl">${response}</span>`;
+    botMsg.innerHTML = `<span class="inline-block bg-gray-200 dark:bg-gray-800 px-4 py-2 rounded-xl">${response}</span>`;
     chatBox.appendChild(botMsg);
     chatBox.scrollTop = chatBox.scrollHeight;
   },600);
