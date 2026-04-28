@@ -75,6 +75,25 @@ img, div, section {
 
 <body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-white">
 
+  <!-- BREKA TALK -->
+<div id="videoIntro" class="fixed inset-0 bg-black/80 flex items-center justify-center z-[60]">
+
+  <div class="relative w-[90%] max-w-md">
+
+    <!-- CLOSE -->
+    <button onclick="closeVideo()" 
+  class="fixed top-5 right-5 z-[9999] bg-black/70 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg">
+  ✕
+</button>
+
+    <!-- VIDEO (NO AUTOPLAY) -->
+    <video id="introVideo" controls class="rounded-xl w-full bg-black">
+      <source src="brekavideo.mp4" type="video/mp4">
+    </video>
+
+  </div>
+
+</div>
 <!-- DARK MODE -->
 <button onclick="toggleDark()" class="fixed top-5 right-5 z-50 glass px-4 py-2 rounded-full">
   🌙
@@ -241,6 +260,25 @@ function sendMessage(){
 
   input.value='';
 }
+  function closeVideo(){
+  const el = document.getElementById('videoIntro');
+  el.style.opacity = '0';
+
+  setTimeout(() => {
+    el.style.display = 'none';
+  }, 300);
+
+  sessionStorage.setItem("videoSeen", "true");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const videoIntro = document.getElementById('videoIntro');
+
+  // cuma tampil sekali per session
+  if(sessionStorage.getItem("videoSeen")){
+    videoIntro.style.display = 'none';
+  }
+});
 </script>
 
 </body>
