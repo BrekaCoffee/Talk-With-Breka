@@ -262,6 +262,15 @@ function sendMessage(){
 }
   function closeVideo(){
   const el = document.getElementById('videoIntro');
+  const video = document.getElementById('introVideo');
+
+  // ⛔ STOP VIDEO + AUDIO
+  if(video){
+    video.pause();          // stop playback
+    video.currentTime = 0;  // reset ke awal (opsional tapi disarankan)
+  }
+
+  // animasi fade
   el.style.opacity = '0';
 
   setTimeout(() => {
@@ -270,15 +279,6 @@ function sendMessage(){
 
   sessionStorage.setItem("videoSeen", "true");
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  const videoIntro = document.getElementById('videoIntro');
-
-  // cuma tampil sekali per session
-  if(sessionStorage.getItem("videoSeen")){
-    videoIntro.style.display = 'none';
-  }
-});
 </script>
 
 </body>
